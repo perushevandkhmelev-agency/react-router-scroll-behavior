@@ -1,8 +1,14 @@
 {
   "name": "react-router-scroll-behavior",
-  "version": "0.0.1-alpha1",
+  "version": "0.0.1-alpha2",
   "description": "",
   "main": "lib/index.js",
+  "jsnext:main": "src/index.js",
+  "files": [
+    "lib",
+    "src",
+    "README.md"
+  ],
   "scripts": {
     "build": "babel ./src -d lib --ignore '__tests__'"
   },
