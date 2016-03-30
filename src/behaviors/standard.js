@@ -13,6 +13,7 @@ import behavior from './behavior'
  * scroll position upon a `POP` transition.
  */
 export default function standard() {
+  let savePositionHandle = null
   let currentKey
 
   function getScrollPosition() {
@@ -37,8 +38,6 @@ export default function standard() {
     // This helps avoid some jankiness in fighting against the browser's
     // default scroll behavior on `POP` transitions.
     unsetScrollRestoration = setScrollRestoration('manual')
-
-    let savePositionHandle = null
 
     // We have to listen to each scroll update rather than to just location
     // updates, because some browsers will update scroll position before

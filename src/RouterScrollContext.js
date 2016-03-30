@@ -33,8 +33,9 @@ export default class RouterScrollContext extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (shouldUpdateScroll(prevProps.location, this.props.location)) {
-      this.updateScroll(this.props.location)
+    const { shouldUpdateScroll, location } = this.props
+    if (shouldUpdateScroll(prevProps.location, location)) {
+      this.updateScroll(location)
     }
   }
 
