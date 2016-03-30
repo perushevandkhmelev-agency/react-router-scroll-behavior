@@ -10,6 +10,9 @@ export default class RouterScrollContext extends Component {
 
   static defaultProps = {
     behavior: 'standard',
+    shouldUpdateScroll() {
+      return true
+    },
     render(props) {
       return <RouterContext {...props} />
     }
@@ -19,7 +22,6 @@ export default class RouterScrollContext extends Component {
     super(props)
 
     this.scrollBehavior = behaviors[props.behavior]()
-    this.updateScroll(props.location)
   }
 
   componentDidMount() {
@@ -30,8 +32,10 @@ export default class RouterScrollContext extends Component {
     this.scrollBehavior.cancel()
   }
 
-  componentDidUpdate() {
-    this.updateScroll(this.props.location)
+  componentDidUpdate(prevProps) {
+    if (shouldUpdateScroll(prevProps.location, this.props.location)) {
+      this.updateScroll(this.props.location)
+    }
   }
 
   updateScroll(location) {
