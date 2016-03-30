@@ -60,16 +60,16 @@ export default config => {
       dir: 'coverage'
     },
 
-    browsers: [ 'PhantomJS' ],
 
-    plugins: [
-      require("karma-webpack"),
-      require("karma-mocha"),
-      require("karma-mocha-reporter"),
-      require("karma-phantomjs-launcher"),
-      require("karma-sourcemap-loader"),
-    ],
+    customLaunchers: {
+      ChromeCi: {
+        base: 'Chrome',
+        flags: [ '--no-sandbox' ]
+      }
+    },
 
-    singleRun: true
+    browsers: isCi ? [ env.BROWSER ] : [ 'Chrome', 'Firefox' ],
+
+    singleRun: isCi
   })
 }

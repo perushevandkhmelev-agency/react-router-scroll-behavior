@@ -1,32 +1,33 @@
 import expect from 'expect'
 import scrollTop from 'dom-helpers/query/scrollTop'
+import fixtures from '../fixtures'
 import simple from '../../src/behaviors/simple'
 
 describe('simple', () => {
   let behavior
-  let spy
 
   beforeEach(() => {
     behavior = simple()
-    spy = expect.spyOn(window, 'scrollTo')
+    fixtures.setup()
   })
 
   afterEach(() => {
-    spy.restore()
+    fixtures.teardown()
   })
 
   describe('updateScroll', () => {
     ['PUSH', 'REPLACE'].map((action) => {
       it('scroll to top on ' + action, () => {
+        scrollTop(window, 15000)
         behavior.updateScroll({ action: action })
-        expect(spy.calls.length).toEqual(1)
-        expect(spy.calls[0].arguments).toEqual([0, 0])
+        expect(scrollTop(window)).toBe(0)
       })
     })
 
     it('ignore POP', () => {
+      scrollTop(window, 15000)
       behavior.updateScroll({ action: 'POP' })
-      expect(spy.calls.length).toEqual(0)
+      expect(scrollTop(window)).toBe(15000)
     })
   })
 })
