@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import RouterContext from 'react-router/lib/RouterContext'
-import * as behaviors from 'behaviors'
+import standard from './behaviors/standard'
 
 export default class RouterScrollContext extends Component {
   static propTypes = {
-    behavior: PropTypes.oneOf(['simple', 'standard', 'top']),
+    behavior: PropTypes.func,
     render: PropTypes.func.isRequired
   }
 
   static defaultProps = {
-    behavior: 'standard',
+    behavior: standard,
     shouldUpdateScroll() {
       return true
     },
@@ -21,7 +21,7 @@ export default class RouterScrollContext extends Component {
   constructor(props) {
     super(props)
 
-    this.scrollBehavior = behaviors[props.behavior]()
+    this.scrollBehavior = props.behavior()
   }
 
   componentDidMount() {
