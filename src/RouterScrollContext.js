@@ -25,6 +25,11 @@ export default class RouterScrollContext extends Component {
   }
 
   componentDidMount() {
+    const { shouldUpdateScroll, location } = this.props
+    // refresh?
+    if (shouldUpdateScroll(null, location)) {
+      this.scrollBehavior.updateScroll(location)
+    }
     this.scrollBehavior.start()
   }
 
@@ -35,12 +40,8 @@ export default class RouterScrollContext extends Component {
   componentDidUpdate(prevProps) {
     const { shouldUpdateScroll, location } = this.props
     if (shouldUpdateScroll(prevProps.location, location)) {
-      this.updateScroll(location)
+      this.scrollBehavior.updateScroll(location)
     }
-  }
-
-  updateScroll(location) {
-    this.scrollBehavior.updateScroll(location)
   }
 
   componentWillUnmount() {
