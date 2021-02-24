@@ -31,22 +31,13 @@
     "babel-register": "^6.7.2",
     "expect": "^1.16.0",
     "history": "^2.0.1",
-    "isparta-loader": "^2.0.0",
-    "karma": "^0.13.22",
-    "karma-chrome-launcher": "^0.2.3",
-    "karma-coverage": "^0.5.5",
-    "karma-coveralls": "^1.1.2",
-    "karma-firefox-launcher": "^0.1.7",
-    "karma-mocha": "^0.2.2",
-    "karma-mocha-reporter": "^2.0.0",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
-    "rimraf": "^2.5.2",
+    "rimraf": "^3.0.2",
     "webpack": "^1.12.14"
   },
   "peerDependencies": {
     "history": "^2.0.0",
+    "prop-types": "^15.7.2",
     "react": "^0.14.0 || ^15.0.0-0",
     "react-router": "^2.0.0"
   }
